@@ -1,0 +1,8 @@
+
+cat logMemory.txt | grep ActivityManager | sed 's/ [0-9][0-9][0-9][0-9][0-9]\-[0-9][0-9][0-9][0-9][0-9]\/com\.schibsted.bomnegocio\.android.* availMem: /,/g' | sed 's/ lowMemory: //g' | sed 's/ threshold: //g' | sed 's/ totalMem: //g' | sed 's/ maxHeapSize: //g' | sed 's/ largestHeapSize: //g' > activityManager.txt
+
+cat logMemory.txt | grep Debug.memoryInfo | sed 's/ [0-9][0-9][0-9][0-9][0-9]\-[0-9][0-9][0-9][0-9][0-9]\/com\.schibsted.bomnegocio\.android.*{summary\.code=/,/g' | sed 's/ summary\.stack=//g' | sed 's/ summary\.graphics=//g' | sed 's/ summary\.java\-heap=//g' | sed 's/ summary\.native-heap=//g' | sed 's/ summary\.system=//g' | sed 's/ summary.total\-pss=//g' | sed 's/ summary\.private\-other=//g' | sed 's/ summary\.total\-swap=//g' | sed 's/}, totalPrivateClean: /,/g' | sed 's/ totalPrivateDirty: //g' | sed 's/ totalPss: //g' | sed 's/ totalSharedClean: //g' | sed 's/ totalSharedDirty: //g' | sed 's/ totalSwappablePss: //g' | sed 's/ dalvikPrivateDirty: //g' | sed 's/ dalvikPss: //g' | sed 's/ dalvikSharedDirty: //g' | sed 's/ nativePrivateDirty: //g' | sed 's/ nativePss: //g' | sed 's/ nativeSharedDirty: //g' | sed 's/ otherPrivateDirty: //g' | sed 's/ otherPss: //g' | sed 's/ otherSharedDirty: //g' > memoryStats.txt
+
+cat logMemory.txt | grep Debug: | sed 's/ [0-9][0-9][0-9][0-9][0-9]\-[0-9][0-9][0-9][0-9][0-9]\/com\.schibsted.bomnegocio\.android.*nativeHeapAllocatedSize: /,/g' | sed 's/ nativeHeapFreesize: //g' | sed 's/ nativeHeapSize: //g' | sed 's/ pss: //g' > debug.txt
+
+cat logMemory.txt | grep Runtime | sed 's/ [0-9][0-9][0-9][0-9][0-9]\-[0-9][0-9][0-9][0-9][0-9]\/com\.schibsted.bomnegocio\.android.* freeMemory: /,/g' | sed 's/ maxMemory: //g' | sed 's/ totalMemory: //g' > runtime.txt
